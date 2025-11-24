@@ -1,106 +1,62 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sevinho Dasilva Gallery</title>  <script src="https://cdn.tailwindcss.com"></script>  <style>
-    html { scroll-behavior: smooth; }
+  <title>Sevinho Dasilva — VinnGallery</title>
 
-    /* ======= BACKGROUND FUTURISTIK ======= */
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
     body {
+      font-family: "Poppins", sans-serif;
       background: radial-gradient(circle at 20% 20%, #06071a, #03040d 70%);
       color: #d5d8e9;
       overflow-x: hidden;
     }
+    html { scroll-behavior: smooth; }
 
-    /* Hologram Loading Screen */
-    #loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #02030a;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999999;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .holo-ring {
-      width: 80px;
-      height: 80px;
-      border: 4px solid rgba(99,102,241,0.2);
-      border-top: 4px solid #6366f1;
-      border-radius: 50%;
-      animation: spin 1s linear infinite, glow 2s ease-in-out infinite;
-    }
-    @keyframes spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
-    @keyframes glow {
-      0%,100% { box-shadow: 0 0 15px #4f46e5; }
-      50% { box-shadow: 0 0 35px #6366f1; }
-    }
-    .loading-text {
-      font-size: 1.3rem;
-      color: #818cf8;
-      letter-spacing: 2px;
-      animation: fadeBlink 2s infinite;
-    }
-    @keyframes fadeBlink {
-      0%,100% { opacity: 0.3; }
-      50% { opacity: 1; }
-    }
+    /* ===== Neon Glow ===== */
+    .neon { text-shadow: 0 0 15px #4f46e5, 0 0 30px #4338ca; }
 
-    /* ======= SCROLL ANIMATIONS ======= */
-    .scroll-anim {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: 0.8s ease-out;
+    /* ===== Header Typing Effect ===== */
+    .typing::after {
+      content: "|";
+      animation: cursorBlink 0.6s infinite;
     }
-    .scroll-anim.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    @keyframes cursorBlink { 50% { opacity: 0; } }
 
-    /* ======= NEON EFFECT ======= */
-    .neon {
-      text-shadow: 0 0 10px #4f46e5, 0 0 20px #4338ca;
-    }
-
-    /* ======= MASONRY GALLERY ======= */
-    .masonry {
-      column-count: 1;
-      column-gap: 1rem;
-    }
+    /* ===== Masonry Gallery ===== */
+    .masonry { column-count: 1; column-gap: 1rem; }
     @media (min-width: 640px) { .masonry { column-count: 2; } }
     @media (min-width: 768px) { .masonry { column-count: 3; } }
     @media (min-width: 1024px) { .masonry { column-count: 4; } }
 
     .masonry img {
       width: 100%;
-      margin-bottom: 1rem;
       border-radius: 14px;
-      transition: 0.35s ease;
-      cursor: pointer;
+      margin-bottom: 1rem;
       background: #0a0a10;
+      cursor: pointer;
+      transition: 0.35s ease;
     }
     .masonry img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 12px #6366f1, 0 0 22px #4f46e5;
+      transform: scale(1.06) rotate(1deg);
+      box-shadow: 0 0 20px #6366f1, 0 0 35px #4f46e5;
     }
 
-    /* ======= LIGHTBOX ======= */
+    /* ===== Lightbox ===== */
     #lightbox {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.85);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
       justify-content: center;
       align-items: center;
       z-index: 9999;
+      backdrop-filter: blur(4px);
     }
     #lightbox img {
       max-width: 90%;
@@ -108,62 +64,117 @@
       border-radius: 12px;
       box-shadow: 0 0 25px #6366f1;
     }
-  </style>  <script>
-    document.addEventListener("DOMContentLoaded", () => {
 
-      /* ===== HOLOGRAM LOADING ===== */
-      const loader = document.getElementById("loading-screen");
-      setTimeout(() => {
-        loader.style.opacity = 0;
-        setTimeout(() => loader.remove(), 500);
-      }, 1500);
+    .lightbox-btn {
+      position: absolute;
+      top: 50%;
+      font-size: 2.8rem;
+      color: #bfc3ff;
+      cursor: pointer;
+      user-select: none;
+      transition: 0.3s;
+    }
+    .lightbox-btn:hover {
+      color: white;
+      text-shadow: 0 0 20px #6366f1;
+    }
+    #prev { left: 4%; }
+    #next { right: 4%; }
+  </style>
+</head>
 
-      /* ===== LIGHTBOX ===== */
-      const lightbox = document.getElementById('lightbox');
-      const lightImg = document.getElementById('lightbox-img');
-      document.querySelectorAll('.masonry img').forEach(img => {
-        img.addEventListener('click', () => {
-          lightImg.src = img.src;
-          lightbox.style.display = 'flex';
-        });
-      });
-      lightbox.addEventListener('click', () => lightbox.style.display = 'none');
+<body>
 
-      /* ===== SCROLL ANIMATIONS ===== */
-      const animatedItems = document.querySelectorAll('.scroll-anim');
-      const onScroll = () => {
-        animatedItems.forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight - 100) {
-            el.classList.add('show');
-          }
-        });
-      };
-      window.addEventListener('scroll', onScroll);
-      onScroll();
-    });
-  </script></head>
-<body>  <!-- ===== HOLOGRAM LOADING SCREEN ===== -->  <div id="loading-screen">
-    <div class="holo-ring"></div>
-    <div class="loading-text">Loading VinnDev...</div>
-  </div>  <!-- LIGHTBOX -->  <div id="lightbox"><img id="lightbox-img" /></div>  <!-- NAVBAR -->  <nav class="fixed top-0 left-0 w-full text-white py-4 flex justify-center gap-12 z-50 backdrop-blur-md bg-opacity-20 bg-indigo-900/40 border-b border-indigo-600/40">
-    <span class="font-bold text-indigo-300 neon">VinnDev</span>
-    <a href="#gallery" class="font-bold hover:text-indigo-300">Gallery</a>
-    <a href="#about" class="font-bold hover:text-indigo-300">About</a>
-    <a href="#contact" class="font-bold hover:text-indigo-300">Contact</a>
-  </nav>  <!-- HEADER -->  <header class="text-white text-center py-20 mt-20 scroll-anim">
-    <h1 class="text-5xl font-bold neon">Sevinho Dasilva </h1>
-    <p class="text-lg opacity-80 mt-3 tracking-wide">VinnDev</p>
-  </header>  <!-- GALLERY -->  <section id="gallery" class="p-6 masonry scroll-anim">
+  <!-- LOADING -->
+  <div id="loading-screen" class="fixed top-0 left-0 w-full h-full flex flex-col gap-5 items-center justify-center bg-[#02030a] z-[99999]">
+    <div class="w-20 h-20 border-4 rounded-full border-indigo-500 border-t-transparent animate-spin"></div>
+    <p class="text-indigo-300 tracking-[4px] text-lg">Loading VinnDev...</p>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <span id="prev" class="lightbox-btn">&#10094;</span>
+    <img id="lightbox-img" />
+    <span id="next" class="lightbox-btn">&#10095;</span>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 left-0 w-full py-4 z-50 bg-indigo-900/20 backdrop-blur-lg border-b border-indigo-700/40">
+    <ul class="flex justify-center gap-12 font-semibold">
+      <li class="neon text-indigo-300">VinnDev</li>
+      <li><a href="#gallery" class="hover:text-indigo-300">Gallery</a></li>
+      <li><a href="#about" class="hover:text-indigo-300">About</a></li>
+      <li><a href="#contact" class="hover:text-indigo-300">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="text-center py-32">
+    <h1 class="text-6xl font-extrabold neon">Sevinho Dasilva</h1>
+    <p id="typing" class="typing text-indigo-300 mt-4 text-xl opacity-80"></p>
+  </header>
+
+  <!-- GALLERY -->
+  <section id="gallery" class="p-6 masonry">
     <img src="DSC07189.JPG" alt="Foto 1" />
     <img src="IMG-20250923-WA0030.jpg" alt="Foto 2" />
-  </section>  <!-- ABOUT -->  <section id="about" class="max-w-3xl mx-auto text-center p-10 scroll-anim">
-    <h2 class="text-3xl font-bold mb-4 text-indigo-300 neon">Tentang Saya</h2>
-    <p class="opacity-80 leading-relaxed">Saya membuat gallery ini untuk memamerkan semua foto andalan saya.</p>
-  </section>  <!-- CONTACT -->  <section id="contact" class="max-w-3xl mx-auto text-center p-10 scroll-anim">
-    <h2 class="text-3xl font-bold mb-4 text-indigo-300 neon">Kontak</h2>
-    <p>Email: vinvin140107@gmail.com</p>
-  </section>  <!-- FOOTER -->  <footer class="text-center text-indigo-300 py-6 mt-10 opacity-70 scroll-anim">
-    <p>&copy; 2025 VinnDev — VinnGallery</p>
-  </footer></body>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="max-w-3xl mx-auto text-center p-10">
+    <h2 class="text-4xl font-bold mb-4 neon text-indigo-300">Tentang Saya</h2>
+    <p class="opacity-80 leading-relaxed text-lg">
+      Saya membuat gallery ini untuk menampilkan foto terbaik & momen paling keren
+      dalam perjalanan saya. Semua foto di website ini adalah karya pribadi dan menjadi bagian dari perjalanan saya sebagai fotografer & kreator digital.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="text-center p-10">
+    <h2 class="text-4xl font-bold mb-4 neon text-indigo-300">Kontak</h2>
+    <p class="mb-6 opacity-80">Hubungi saya melalui sosial berikut:</p>
+
+    <div class="flex justify-center gap-6 text-lg">
+      <a href="mailto:vinvin140107@gmail.com" class="hover:text-indigo-400 underline">Email</a>
+      <a href="https://wa.me/628xxxx" class="hover:text-indigo-400 underline">WhatsApp</a>
+      <a href="https://instagram.com/yourusername" class="hover:text-indigo-400 underline">Instagram</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-indigo-400 py-8 opacity-70">
+    &copy; 2025 VinnDev — VinnGallery
+  </footer>
+
+  <script>
+    /* Loading Effect */
+    setTimeout(() => {
+      document.getElementById("loading-screen").style.display = "none";
+    }, 1500);
+
+    /* Typing Animation */
+    const typing = document.getElementById("typing");
+    const words = ["Content Creator", "Photographer", "Developer", "Digital Artist"];
+    let idx = 0, char = 0, deleting = false;
+    setInterval(() => {
+      typing.innerText = words[idx].substring(0, char);
+      char += deleting ? -1 : 1;
+      if (char === words[idx].length) deleting = true;
+      if (char === 0 && deleting) { deleting = false; idx = (idx + 1) % words.length; }
+    }, 120);
+
+    /* Lightbox Gallery */
+    const images = Array.from(document.querySelectorAll(".masonry img"));
+    let current = 0;
+    const light = document.getElementById("lightbox");
+    const lightImg = document.getElementById("lightbox-img");
+
+    const open = (i) => { current = i; lightImg.src = images[i].src; light.style.display = "flex"; };
+    images.forEach((img, i) => img.addEventListener("click", () => open(i)));
+    document.getElementById("prev").onclick = () => open((current - 1 + images.length) % images.length);
+    document.getElementById("next").onclick = () => open((current + 1) % images.length);
+    light.addEventListener("click", (e) => e.target === light && (light.style.display = "none"));
+  </script>
+
+</body>
 </html>
