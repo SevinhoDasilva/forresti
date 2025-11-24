@@ -301,17 +301,6 @@
       document.addEventListener('mouseleave', ()=> el.style.transform = '');
     })();
 
-    /* ============================
-       Swiper portfolio init
-       ============================ */
-    const swiper = new Swiper(".mySwiper", {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 18,
-      navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
-      pagination: { el: ".swiper-pagination", clickable: true },
-      autoplay: { delay: 4500, disableOnInteraction: false },
-    });
 
     /* ============================
        Lightbox + gallery interactions
@@ -439,32 +428,6 @@
     countUp($('#count-projects'), 7, 900);
     countUp($('#count-followers'), 1240, 1000);
 
-    /* ============================
-       Guestbook (localStorage)
-       ============================ */
-    const gform = $('#guest-form');
-    const glist = $('#guest-list');
-    function renderGuests(){
-      const guests = JSON.parse(localStorage.getItem('vin_guest')||'[]');
-      glist.innerHTML = guests.reverse().map(g => `<div class="p-3 rounded-md" style="background:rgba(255,255,255,0.02)"><div class="font-semibold">${escapeHtml(g.name)}</div><div class="text-sm opacity-80">${escapeHtml(g.msg)}</div><div class="text-xs opacity-60 mt-1">${new Date(g.t).toLocaleString()}</div></div>`).join('');
-    }
-    function escapeHtml(s){ return (''+s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
-    gform.addEventListener('submit', (e)=> {
-      e.preventDefault();
-      const name = $('#g-name').value.trim();
-      const msg = $('#g-msg').value.trim();
-      if(!name || !msg) return;
-      const guests = JSON.parse(localStorage.getItem('vin_guest')||'[]');
-      guests.push({name, msg, t: Date.now()});
-      localStorage.setItem('vin_guest', JSON.stringify(guests));
-      $('#g-name').value=''; $('#g-msg').value='';
-      renderGuests();
-      playClick();
-    });
-    $('#clear-guest').addEventListener('click', ()=> {
-      if(confirm('Kosongkan semua pesan guestbook?')){ localStorage.removeItem('vin_guest'); renderGuests(); }
-    });
-    renderGuests();
 
     /* ============================
        Scroll reveal premium
