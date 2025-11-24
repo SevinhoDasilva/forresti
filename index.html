@@ -394,26 +394,6 @@
       }
     });
 
-    // Guestbook — in-memory only (keeps privacy, not persisted)
-    (function guestbook(){
-      const form = document.getElementById('guest-form');
-      const list = document.getElementById('guest-list');
-      const clearBtn = document.getElementById('clear-guest');
-      const guests = [];
-
-      form.addEventListener('submit', (e)=>{
-        e.preventDefault();
-        const name = document.getElementById('g-name').value.trim();
-        const msg = document.getElementById('g-msg').value.trim();
-        if(!name || !msg) return;
-        const entry = { name, msg, at: new Date().toLocaleString() };
-        guests.unshift(entry);
-        render();
-        form.reset();
-      });
-
-      clearBtn.addEventListener('click', ()=>{ guests.length = 0; render(); });
-
       function render(){ list.innerHTML = '';
         if(guests.length === 0) { list.innerHTML = '<div class="opacity-70">Belum ada pesan.</div>'; return; }
         guests.forEach(g => {
