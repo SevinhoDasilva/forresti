@@ -247,18 +247,148 @@
 
   <!-- Gallery -->
   <section id="gallery" class="mt-6 px-3">
-    <!-- Gallery content... -->
+    <div class="masonry">
+      <!-- FOTO 1 -->
+      <figure data-title="City Neon" data-loc="Guntur, 2025" data-desc="Low-light street photo">
+        <img loading="lazy" src="foto1.jpg" alt="City Neon" />
+        <figcaption class="caption">
+          <div class="meta">
+            <strong>Golden Hour</strong>
+            <div style="font-size:11px; opacity:0.85">Gunung Guntur</div>
+          </div>
+          <div class="actions">
+            <button class="btn-download" data-fname="foto1.jpg">↓</button>
+            <button class="btn-share">⤴</button>
+          </div>
+        </figcaption>
+      </figure>
+
+      <!-- FOTO 2 -->
+      <figure data-title="Golden Hour" data-loc="ITG, 2025" data-desc="Sunset portrait">
+        <img loading="lazy" src="foto2.jpg" alt="Golden Hour" />
+        <figcaption class="caption">
+          <div class="meta">
+            <strong>Cikajang Style</strong>
+            <div style="font-size:11px; opacity:0.85">Just Style</div>
+          </div>
+          <div class="actions">
+            <button class="btn-download" data-fname="foto2.jpg">↓</button>
+            <button class="btn-share">⤴</button>
+          </div>
+        </figcaption>
+      </figure>
+
+      <!-- FOTO 3 -->
+      <figure data-title="Mountain View" data-loc="Bandung, 2025" data-desc="Landscape with sunset">
+        <img loading="lazy" src="foto3.jpg" alt="Mountain View" />
+        <figcaption class="caption">
+          <div class="meta">
+            <strong>Mountain Sunset</strong>
+            <div style="font-size:11px; opacity:0.85">Bandung</div>
+          </div>
+          <div class="actions">
+            <button class="btn-download" data-fname="foto3.jpg">↓</button>
+            <button class="btn-share">⤴</button>
+          </div>
+        </figcaption>
+      </figure>
+
+      <!-- FOTO 4 -->
+      <figure data-title="Forest Path" data-loc="Garut, 2025" data-desc="Nature photography">
+        <img loading="lazy" src="foto4.jpg" alt="Forest Walk" />
+        <figcaption class="caption">
+          <div class="meta">
+            <strong>Forest Walk</strong>
+            <div style="font-size:11px; opacity:0.85">Garut</div>
+          </div>
+          <div class="actions">
+            <button class="btn-download" data-fname="foto4.jpg">↓</button>
+            <button class="btn-share">⤴</button>
+          </div>
+        </figcaption>
+      </figure>
+
+      <!-- FOTO 5 -->
+      <figure data-title="Cityscape" data-loc="Jakarta, 2025" data-desc="Night lights photography">
+        <img loading="lazy" src="foto5.jpg" alt="City Lights" />
+        <figcaption class="caption">
+          <div class="meta">
+            <strong>City Lights</strong>
+            <div style="font-size:11px; opacity:0.85">Jakarta</div>
+          </div>
+          <div class="actions">
+            <button class="btn-download" data-fname="foto5.jpg">↓</button>
+            <button class="btn-share">⤴</button>
+          </div>
+        </figcaption>
+      </figure>
+    </div>
   </section>
 
-  <!-- Additional Sections... -->
+  <!-- About Section -->
+  <section id="about" class="max-w-3xl mx-auto text-center p-6 mt-12">
+    <h2 class="text-3xl neon font-bold mb-4">Tentang Saya</h2>
+    <p class="opacity-80 leading-relaxed text-lg">
+      Halloo semuanya! Saya adalah Fotografer dan Developer pemula yang suka bereksperimen dengan editing, desain web, dan dunia digital. Website ini saya buat sebagai tempat untuk menyimpan galeri foto, portfolio desain, sekaligus ruang bermain untuk belajar teknologi web.
+    </p>
+  </section>
+
+  <!-- Biodata Section -->
+  <section id="biodata" class="max-w-3xl mx-auto text-center p-6 mt-10">
+    <h2 class="text-3xl neon font-bold mb-4">Biodata</h2>
+    <div class="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-lg text-left">
+      <ul class="space-y-3 text-lg">
+        <li><strong class="text-indigo-400">Nama Lengkap:</strong> Sevinho Dasilva</li>
+        <li><strong class="text-indigo-400">Nama Panggilan:</strong> Vino</li>
+        <li><strong class="text-indigo-400">Tanggal Lahir:</strong> 14 Januari 2007</li>
+        <li><strong class="text-indigo-400">Alamat:</strong> Asrama Yonif 303 SSM</li>
+        <li><strong class="text-indigo-400">Hobi:</strong> Musik, Fotografi, Olahraga, Coding</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Guestbook Section -->
+  <section id="guestbook" class="max-w-3xl mx-auto p-6 mt-12">
+    <h2 class="text-3xl neon font-bold mb-5 text-center">Guestbook</h2>
+    <div class="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-lg">
+      <form id="guestbook-form" class="space-y-4">
+        <input id="gb-name" type="text" placeholder="Nama" class="w-full p-3 rounded bg-black/30 border border-white/10 outline-none">
+        <textarea id="gb-message" placeholder="Pesan" rows="3" class="w-full p-3 rounded bg-black/30 border border-white/10 outline-none"></textarea>
+        <button type="submit" class="px-4 py-2 bg-indigo-600 rounded text-white font-bold w-full">Kirim Pesan</button>
+      </form>
+      <div id="guestbook-list" class="mt-6 space-y-4">
+        <!-- Pesan akan di-append dari JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="max-w-3xl mx-auto text-center p-6 mt-12 mb-16">
+    <h2 class="text-3xl neon font-bold mb-4">Kontak</h2>
+    <p class="opacity-80">Email: <a href="mailto:vinvin140107@gmail.com" class="underline text-indigo-300"> vinvin140107@gmail.com </a></p>
+    <p class="opacity-80">WhatsApp: <a href="https://wa.me/6285224943832" class="underline text-indigo-300"> 085224943832 </a></p>
+    <p class="opacity-80">Instagram: <a href="https://instagram.com/vinn.dasilva_" class="underline text-indigo-300"> @vinn.dasilva_ </a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 opacity-50 text-sm">
+    © 2025 VinnDev • All Rights Reserved
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox">
+    <div id="lightbox-content">
+      <button class="close-lightbox">&times;</button>
+      <img id="lightbox-img" alt="Preview">
+      <div class="info">
+        <strong id="info-title"></strong>
+        <span id="info-loc"></span>
+        <p id="info-desc"></p>
+      </div>
+    </div>
+  </div>
 
   <script>
-    // Hide loading screen after page is loaded
-    window.onload = () => {
-      const loadingScreen = document.getElementById('loading-screen');
-      loadingScreen.style.display = 'none';
-    };
-
     /* ============================ TYPE EFFECT ============================ */
     const words = ["Fotografer.", "Editor.", "Web Developer.", "Content Creator."];
     let i = 0, j = 0, del = false;
@@ -291,6 +421,10 @@
       countUp("count-photos", 58);
       countUp("count-projects", 12);
       countUp("count-followers", 2500, 1);
+
+      // Hide the loading screen after the page has loaded
+      const loadingScreen = document.getElementById('loading-screen');
+      loadingScreen.style.display = 'none';
     });
 
     /* ============================ LIGHTBOX BEHAVIOR ============================ */
