@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -54,7 +53,7 @@
       gap: 1rem;
       align-items: center;
       justify-content: center;
-      background: rgba(2, 3, 10, 0.95);
+      background: rgba(2,3,10,0.95);
       z-index: 99999;
     }
 
@@ -62,17 +61,16 @@
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      border: 4px solid rgba(99, 102, 241, 0.12);
+      border: 4px solid rgba(99,102,241,0.12);
       border-top: 4px solid var(--indigo-600);
       animation: spin 1s linear infinite;
-      box-shadow: 0 0 18px rgba(99, 102, 241, 0.2);
+      box-shadow: 0 0 18px rgba(99,102,241,0.2);
     }
 
     @keyframes spin {
       from {
         transform: rotate(0);
       }
-
       to {
         transform: rotate(360deg);
       }
@@ -86,8 +84,8 @@
       right: 0;
       z-index: 60;
       backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(9, 10, 20, 0.35), rgba(9, 10, 20, 0.12));
-      border-bottom: 1px solid rgba(99, 102, 241, 0.06);
+      background: linear-gradient(180deg, rgba(9,10,20,0.35), rgba(9,10,20,0.12));
+      border-bottom: 1px solid rgba(99,102,241,0.06);
     }
 
     nav ul {
@@ -110,7 +108,7 @@
 
     nav a:hover {
       color: white;
-      box-shadow: 0 0 10px rgba(99, 102, 241, 0.12);
+      box-shadow: 0 0 10px rgba(99,102,241,0.12);
     }
 
     /* Header */
@@ -181,7 +179,7 @@
 
     .masonry figure:hover img {
       transform: scale(1.05) rotate(0.5deg);
-      box-shadow: 0 0 22px rgba(99, 102, 241, 0.18);
+      box-shadow: 0 0 22px rgba(99,102,241,0.18);
     }
 
     .caption {
@@ -191,7 +189,7 @@
       bottom: 8px;
       padding: 8px 10px;
       border-radius: 10px;
-      background: linear-gradient(180deg, rgba(7, 9, 20, 0.15), rgba(5, 6, 12, 0.45));
+      background: linear-gradient(180deg, rgba(7,9,20,0.15), rgba(5,6,12,0.45));
       backdrop-filter: blur(6px);
       color: var(--muted);
       display: flex;
@@ -209,7 +207,7 @@
   <!-- Loading -->
   <div id="loading-screen">
     <div class="holo-ring"></div>
-    <div style="color: var(--muted); letter-spacing: 3px">LOADING...</div>
+    <div style="color: var(--muted); letter-spacing: 3px;">LOADING...</div>
   </div>
 
   <!-- Navbar -->
@@ -245,7 +243,7 @@
     </div>
   </header>
 
-  <!-- Gallery Section -->
+  <!-- Gallery -->
   <section id="gallery" class="mt-6 px-3">
     <div class="masonry">
       <!-- FOTO 1 -->
@@ -281,28 +279,22 @@
           </div>
         </figcaption>
       </figure>
-    </div>
-  </section>
-
-   <!-- FOTO 4 -->
-      <figure data-title="Mountain View" data-loc="Bandung, 2025" data-desc="Landscape with sunset">
-        <img loading="lazy" src="foto4.jpg" alt="Mountain View" />
+      <!-- FOTO 4 -->
+      <figure data-title="Forest Path" data-loc="Garut, 2025" data-desc="Nature photography">
+        <img loading="lazy" src="foto4.jpg" alt="Forest Walk" />
         <figcaption class="caption">
-          <div class="meta"><strong>Mountain Sunset</strong><div style="font-size:11px; opacity:0.85">Bandung</div></div>
+          <div class="meta"><strong>Forest Walk</strong><div style="font-size:11px; opacity:0.85">Garut</div></div>
           <div class="actions">
             <button class="btn-download" data-fname="foto4.jpg">↓</button>
             <button class="btn-share">⤴</button>
           </div>
         </figcaption>
       </figure>
-    </div>
-  </section>
-
-   <!-- FOTO 5 -->
-      <figure data-title="Mountain View" data-loc="Bandung, 2025" data-desc="Landscape with sunset">
-        <img loading="lazy" src="foto5.jpg" alt="Mountain View" />
+      <!-- FOTO 5 -->
+      <figure data-title="Cityscape" data-loc="Jakarta, 2025" data-desc="Night lights photography">
+        <img loading="lazy" src="foto5.jpg" alt="City Lights" />
         <figcaption class="caption">
-          <div class="meta"><strong>Mountain Sunset</strong><div style="font-size:11px; opacity:0.85">Bandung</div></div>
+          <div class="meta"><strong>City Lights</strong><div style="font-size:11px; opacity:0.85">Jakarta</div></div>
           <div class="actions">
             <button class="btn-download" data-fname="foto5.jpg">↓</button>
             <button class="btn-share">⤴</button>
@@ -312,13 +304,21 @@
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- ===================== -->
+
+  <!-- ABOUT SECTION -->
+  <!-- ===================== -->
   <section id="about" class="max-w-3xl mx-auto text-center p-6 mt-12">
     <h2 class="text-3xl neon font-bold mb-4">Tentang Saya</h2>
-    <p class="opacity-80 leading-relaxed text-lg">Halloo semuanya! Saya adalah Fotografer dan Developer pemula yang suka bereksperimen dengan editing, desain web, dan dunia digital. Website ini saya buat sebagai tempat untuk menyimpan galeri foto, portfolio desain, sekaligus ruang bermain untuk belajar teknologi web.</p>
+    <p class="opacity-80 leading-relaxed text-lg">
+      Halloo semuanya! Saya adalah Fotografer dan Developer pemula yang suka bereksperimen dengan editing, desain web, dan dunia digital. Website ini saya buat sebagai tempat untuk menyimpan galeri foto, portfolio desain, sekaligus ruang bermain untuk belajar teknologi web.
+    </p>
   </section>
 
-  <!-- Biodata Section -->
+  <!-- ===================== -->
+
+  <!-- BIODATA SECTION -->
+  <!-- ===================== -->
   <section id="biodata" class="max-w-3xl mx-auto text-center p-6 mt-10">
     <h2 class="text-3xl neon font-bold mb-4">Biodata</h2>
     <div class="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-lg text-left">
@@ -332,7 +332,10 @@
     </div>
   </section>
 
-  <!-- Guestbook Section -->
+  <!-- ===================== -->
+
+  <!-- GUESTBOOK SECTION -->
+  <!-- ===================== -->
   <section id="guestbook" class="max-w-3xl mx-auto p-6 mt-12">
     <h2 class="text-3xl neon font-bold mb-5 text-center">Guestbook</h2>
     <div class="bg-white/5 backdrop-blur-md border border-white/20 rounded-xl p-6 shadow-lg">
@@ -341,25 +344,33 @@
         <textarea id="gb-message" placeholder="Pesan" rows="3" class="w-full p-3 rounded bg-black/30 border border-white/10 outline-none"></textarea>
         <button type="submit" class="px-4 py-2 bg-indigo-600 rounded text-white font-bold w-full">Kirim Pesan</button>
       </form>
-      <div id="guestbook-list" class="mt-6 space-y-4"></div>
+      <div id="guestbook-list" class="mt-6 space-y-4">
+        <!-- Pesan akan di-append dari JS -->
+      </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- ===================== -->
+
+  <!-- CONTACT SECTION -->
+  <!-- ===================== -->
   <section id="contact" class="max-w-3xl mx-auto text-center p-6 mt-12 mb-16">
     <h2 class="text-3xl neon font-bold mb-4">Kontak</h2>
-    <p class="opacity-80">Email: <a href="mailto:vinvin140107@gmail.com" class="underline text-indigo-300">vinvin140107@gmail.com</a></p>
-    <p class="opacity-80">WhatsApp: <a href="https://wa.me/6285224943832" class="underline text-indigo-300">085224943832</a></p>
-    <p class="opacity-80">Instagram: <a href="https://instagram.com/vinn.dasilva_" class="underline text-indigo-300">@vinn.dasilva_</a></p>
+    <p class="opacity-80">Email: <a href="mailto:vinvin140107@gmail.com" class="underline text-indigo-300"> vinvin140107@gmail.com </a></p>
+    <p class="opacity-80">WhatsApp: <a href="https://wa.me/6285224943832" class="underline text-indigo-300"> 085224943832 </a></p>
+    <p class="opacity-80">Instagram: <a href="https://instagram.com/vinn.dasilva_" class="underline text-indigo-300"> @vinn.dasilva_ </a></p>
   </section>
 
-  <!-- Footer -->
-  <footer class="text-center py-6 opacity-50 text-sm">© 2025 VinnDev • All Rights Reserved</footer>
+  <!-- FOOTER -->
+  <footer class="text-center py-6 opacity-50 text-sm">
+    © 2025 VinnDev • All Rights Reserved
+  </footer>
 
-  <!-- Lightbox Modal (Preview Foto Dihapus) -->
+  <!-- LIGHTBOX MODAL -->
   <div id="lightbox">
     <div id="lightbox-content">
       <button class="close-lightbox">&times;</button>
+      <img id="lightbox-img" alt="Preview">
       <div class="info">
         <strong id="info-title"></strong>
         <span id="info-loc"></span>
@@ -372,6 +383,7 @@
     /* ============================ TYPE EFFECT ============================ */
     const words = ["Fotografer.", "Editor.", "Web Developer.", "Content Creator."];
     let i = 0, j = 0, del = false;
+
     setInterval(() => {
       const el = document.getElementById("typing");
       if (!del) {
@@ -396,11 +408,31 @@
         if (num >= end) clearInterval(int);
       }, speed);
     }
+
     window.addEventListener("load", () => {
       countUp("count-photos", 58);
       countUp("count-projects", 12);
       countUp("count-followers", 2500, 1);
     });
+
+    /* ============================ LIGHTBOX BEHAVIOR ============================ */
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightbox-img");
+    const lbTitle = document.getElementById("info-title");
+    const lbLoc = document.getElementById("info-loc");
+    const lbDesc = document.getElementById("info-desc");
+
+    document.querySelectorAll(".masonry figure").forEach(fig => {
+      fig.addEventListener("click", () => {
+        lbImg.src = fig.querySelector("img").src;
+        lbTitle.textContent = fig.dataset.title;
+        lbLoc.textContent = fig.dataset.loc;
+        lbDesc.textContent = fig.dataset.desc;
+        lightbox.classList.add("active");
+      });
+    });
+
+    document.querySelector(".close-lightbox").onclick = () => lightbox.classList.remove("active");
 
     /* ============================ GUESTBOOK (LocalStorage) ============================ */
     const gbForm = document.getElementById("guestbook-form");
@@ -408,12 +440,12 @@
     let messages = JSON.parse(localStorage.getItem("guestbook") || "[]");
 
     function renderMessages() {
-      gbList.innerHTML = messages.map(m =>
-        `<div class="p-3 rounded bg-black/40 border border-white/10">
+      gbList.innerHTML = messages.map(m => `
+        <div class="p-3 rounded bg-black/40 border border-white/10">
           <strong>${m.name}</strong><br>
           <span class="opacity-80 text-sm">${m.text}</span>
-        </div>`
-      ).join("");
+        </div>
+      `).join("");
     }
 
     renderMessages();
@@ -453,6 +485,7 @@
     }
 
     stars.setAttribute("position", new THREE.BufferAttribute(starPos, 3));
+
     const starMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.015 });
     const starMesh = new THREE.Points(stars, starMaterial);
     scene.add(starMesh);
@@ -473,4 +506,3 @@
   </script>
 </body>
 </html>
-
