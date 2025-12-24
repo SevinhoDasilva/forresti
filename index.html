@@ -193,6 +193,75 @@
       }
     }
 
+      /* LOVE LETTER */
+    .love-letter {
+      margin: 80px auto;
+      width: 90%;
+      max-width: 800px;
+      position: relative;
+    }
+
+    .envelope {
+      width: 280px;
+      height: 180px;
+      background: rgba(255,255,255,0.25);
+      margin: auto;
+      border-radius: 15px;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1em;
+      font-weight: 600;
+      transition: transform 0.4s ease;
+    }
+
+    .envelope:hover {
+      transform: scale(1.05);
+    }
+
+    .envelope-front {
+      z-index: 2;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.35);
+      clip-path: polygon(0 0, 100% 0, 50% 50%);
+      transform-origin: top;
+      transition: transform 0.8s ease;
+    }
+
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
+    .letter-box {
+      background: rgba(255,255,255,0.15);
+      margin-top: 40px;
+      padding: 35px 30px;
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      font-size: 1.05em;
+      line-height: 1.9;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+      display: none;
+    }
+
+    .letter-box.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
   </style>
 </head>
 <body>
@@ -236,6 +305,31 @@
       <div class="caption">Semoga selamanya, kamu tetap di sisiku 💕</div>
     </div>
 
+  </div>
+</section>
+
+<section class="love-letter">
+  <div class="envelope" id="envelope" onclick="openLetter()">
+    <div class="envelope-front">💌<br/>Buka Surat Untukmu</div>
+    <div class="envelope-flap"></div>
+  </div>
+  <h2>Surat Cinta Untukmu 💌</h2>
+  <div class="letter-box" id="letterBox">
+    <p>
+      Sayang,
+      <br/><br/>
+      Sejak hari pertama kita bersama, dunia terasa berbeda. Hal-hal sederhana menjadi lebih berarti, dan hari-hari yang biasa berubah menjadi kenangan yang ingin selalu kuingat. Aku bersyukur, bukan hanya karena aku mencintaimu, tetapi karena aku bisa mencintai diriku sendiri saat bersamamu.
+      <br/><br/>
+      Terima kasih sudah bertahan, mengerti, dan selalu ada, bahkan di saat aku tidak mudah untuk dipahami. Kamu adalah rumah, tempat aku ingin pulang, tempat aku ingin bercerita tanpa takut dihakimi.
+      <br/><br/>
+      Aku tidak tahu bagaimana masa depan akan berjalan, tetapi satu hal yang pasti: aku ingin menjalaninya bersamamu. Dalam tawa, air mata, lelah, dan bahagia—aku ingin menggenggam tanganmu dan berkata, “kita bisa.”
+      <br/><br/>
+      Jika suatu hari nanti dunia terasa berat, ingatlah bahwa ada aku yang selalu memilihmu. Hari ini, esok, dan seterusnya.
+      <br/><br/>
+      Dengan seluruh rasa yang aku punya,
+      <br/>
+      Aku ❤️
+    </p>
   </div>
 </section>
 
@@ -283,6 +377,21 @@
   }
 
   setInterval(createHeart, 500);
+
+  function openLetter() {
+    const envelope = document.getElementById('envelope');
+    const letter = document.getElementById('letterBox');
+
+    envelope.classList.add('open');
+
+    setTimeout(() => {
+      letter.classList.add('show');
+    }, 800);
+
+    setTimeout(() => {
+      envelope.style.display = 'none';
+    }, 1500);
+  }
 </script>
 
 </body>
