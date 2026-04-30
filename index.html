@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sevinho — Refined Portfolio</title>
+<title>Sevinho Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -15,21 +15,45 @@
  --bg:#050816;
  --text:#eaeaea;
  --accent:#7c3aed;
+ --container:1200px;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:var(--bg);color:var(--text);overflow-x:hidden}
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box;
+ font-family:'Poppins',sans-serif;
+}
 
-/* CONTAINER SYSTEM */
+body{
+ background:var(--bg);
+ color:var(--text);
+ line-height:1.6;
+ overflow-x:hidden;
+}
+
+/* GLOBAL */
+img{
+ width:100%;
+ display:block;
+ border-radius:16px;
+}
+
+/* CONTAINER */
 .container{
- max-width:1200px;
+ max-width:var(--container);
  margin:auto;
  padding:0 20px;
 }
 
+/* SECTION */
+section{
+ padding:100px 0;
+}
+
 /* HERO */
 .hero{
- height:180vh;
+ height:160vh;
  position:relative;
 }
 .hero-inner{
@@ -42,118 +66,124 @@ body{background:var(--bg);color:var(--text);overflow-x:hidden}
  align-items:center;
  text-align:center;
 }
+
 .hero h1{
- font-size:72px;
- line-height:1.1;
+ font-size:64px;
  font-weight:800;
+ line-height:1.2;
 }
+
 .hero span{color:var(--accent)}
 
-.bg-layer{
- position:absolute;
- width:100%;
- height:100%;
- background:radial-gradient(circle,#7c3aed22,#000);
- z-index:-1;
+.hero p{
+ margin-top:10px;
+ opacity:0.7;
 }
 
-/* SECTION SPACING */
-section{
- padding:120px 0;
+/* BACKGROUND */
+.bg-layer{
+ position:absolute;
+ inset:0;
+ background:radial-gradient(circle,#7c3aed22,#000);
+ z-index:-1;
 }
 
 /* SPLIT */
 .split{
  display:grid;
  grid-template-columns:1fr 1fr;
- gap:60px;
+ gap:50px;
  align-items:center;
 }
+
 .split img{
- width:100%;
  aspect-ratio:4/5;
  object-fit:cover;
- border-radius:20px;
 }
 
 /* TEXT */
 .big-text{
- font-size:56px;
+ font-size:48px;
  font-weight:800;
- margin-bottom:20px;
+ margin-bottom:15px;
 }
 
 /* MARQUEE */
 .marquee{
  overflow:hidden;
- white-space:nowrap;
- border-top:1px solid #333;
- border-bottom:1px solid #333;
-}
-.marquee span{
- display:inline-block;
- padding:20px 0;
- font-size:32px;
- animation:marquee 18s linear infinite;
-}
-@keyframes marquee{
- 0%{transform:translateX(0)}
- 100%{transform:translateX(-100%)}
+ border-top:1px solid #222;
+ border-bottom:1px solid #222;
 }
 
-/* PROJECT GRID FIX */
+.marquee-track{
+ display:flex;
+ gap:50px;
+ padding:20px 0;
+ animation:marquee 15s linear infinite;
+}
+
+@keyframes marquee{
+ from{transform:translateX(0)}
+ to{transform:translateX(-50%)}
+}
+
+/* PROJECT GRID */
 .projects{
  display:grid;
  grid-template-columns:repeat(12,1fr);
- gap:30px;
+ gap:24px;
 }
 
 .project{
  position:relative;
- border-radius:20px;
  overflow:hidden;
+ border-radius:16px;
 }
 
-/* GRID VARIATION */
-.project.large{grid-column:span 6}
-.project.medium{grid-column:span 4}
-.project.small{grid-column:span 3}
+/* GRID SIZE */
+.large{grid-column:span 6}
+.medium{grid-column:span 4}
+.small{grid-column:span 3}
 
 .project img{
- width:100%;
- height:100%;
  aspect-ratio:4/3;
  object-fit:cover;
- transition:0.5s;
+ transition:transform .4s ease, filter .4s ease;
 }
 
 .project:hover img{
- transform:scale(1.1);
- filter:brightness(0.6);
+ transform:scale(1.08);
+ filter:brightness(0.7);
 }
 
 .project h3{
  position:absolute;
- bottom:20px;
- left:20px;
- font-size:20px;
+ bottom:15px;
+ left:15px;
+ font-size:16px;
 }
 
 /* FOOTER */
 footer{
- padding:60px;
  text-align:center;
+ padding:40px;
+ opacity:0.6;
  font-size:14px;
- opacity:0.7;
 }
 
 /* RESPONSIVE */
 @media(max-width:900px){
- .split{grid-template-columns:1fr}
- .project.large,
- .project.medium,
- .project.small{grid-column:span 12}
- .hero h1{font-size:42px}
+ .split{
+  grid-template-columns:1fr;
+ }
+
+ .large,.medium,.small{
+  grid-column:span 12;
+ }
+
+ .hero h1{
+  font-size:38px;
+ }
 }
 </style>
 </head>
@@ -163,9 +193,10 @@ footer{
 <!-- HERO -->
 <section class="hero">
 <div class="bg-layer"></div>
+
 <div class="hero-inner container">
 <h1>Saya <span>Sevinho</span><br>Creative Developer</h1>
-<p>Menciptakan pengalaman web modern & elegan</p>
+<p>Membangun pengalaman web modern yang rapi & elegan</p>
 </div>
 </section>
 
@@ -174,49 +205,61 @@ footer{
 <div class="container split">
 <div>
 <h2 class="big-text">Design meets Experience</h2>
-<p>Saya membangun website dengan fokus pada detail, interaksi, dan visual yang terasa premium.</p>
+<p>Website yang baik bukan hanya terlihat bagus, tapi juga terasa nyaman digunakan dan konsisten di semua device.</p>
 </div>
-<img src="foto1.jpeg">
+<img src="foto1.jpeg" alt="about image" loading="lazy">
 </div>
 </section>
 
 <!-- MARQUEE -->
 <div class="marquee">
-<span>HTML — CSS — JavaScript — React — UI/UX — Animation — Creative Coding —</span>
+<div class="marquee-track">
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+<span>React</span>
+<span>UI/UX</span>
+
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+<span>React</span>
+<span>UI/UX</span>
+</div>
 </div>
 
-<!-- PROJECTS -->
+<!-- PROJECT -->
 <section>
 <div class="container">
 <div class="projects">
 
 <div class="project large">
-<img src="foto2.jpeg">
+<img src="foto2.jpeg" alt="" loading="lazy">
 <h3>Landing Page Premium</h3>
 </div>
 
 <div class="project medium">
-<img src="foto3.jpeg">
+<img src="foto3.jpeg" alt="" loading="lazy">
 <h3>E-Commerce</h3>
 </div>
 
 <div class="project medium">
-<img src="foto1.jpeg">
+<img src="foto1.jpeg" alt="" loading="lazy">
 <h3>UI Interaction</h3>
 </div>
 
 <div class="project small">
-<img src="foto2.jpeg">
+<img src="foto2.jpeg" alt="" loading="lazy">
 <h3>Mini Project</h3>
 </div>
 
 <div class="project small">
-<img src="foto3.jpeg">
+<img src="foto3.jpeg" alt="" loading="lazy">
 <h3>Design Concept</h3>
 </div>
 
 <div class="project small">
-<img src="foto1.jpeg">
+<img src="foto1.jpeg" alt="" loading="lazy">
 <h3>Creative UI</h3>
 </div>
 
@@ -225,15 +268,13 @@ footer{
 </section>
 
 <footer>
-<p>© 2026 Sevinho — Refined Experience</p>
+<p>© 2026 Sevinho — Clean Portfolio</p>
 </footer>
 
 <script>
-
-// GSAP
 gsap.registerPlugin(ScrollTrigger);
 
-// HERO SCROLL
+// HERO
 gsap.to(".hero h1",{
  scrollTrigger:{
   trigger:".hero",
@@ -241,33 +282,41 @@ gsap.to(".hero h1",{
   end:"bottom top",
   scrub:true
  },
- y:150,
+ y:120,
  opacity:0
 });
 
-// SPLIT ANIMATION
+// SPLIT (SAFE TRIGGER)
 gsap.from(".split div",{
- scrollTrigger:".split",
- x:-80,
+ scrollTrigger:{
+  trigger:".split",
+  start:"top 80%"
+ },
+ x:-60,
  opacity:0,
- duration:1
+ duration:0.8
 });
 
 gsap.from(".split img",{
- scrollTrigger:".split",
- x:80,
+ scrollTrigger:{
+  trigger:".split",
+  start:"top 80%"
+ },
+ x:60,
  opacity:0,
- duration:1
+ duration:0.8
 });
 
-// PROJECT ANIM
+// PROJECT (NO DOUBLE TRIGGER)
 gsap.from(".project",{
- scrollTrigger:".projects",
- y:80,
+ scrollTrigger:{
+  trigger:".projects",
+  start:"top 85%"
+ },
+ y:60,
  opacity:0,
- stagger:0.15
+ stagger:0.1
 });
-
 </script>
 
 </body>
