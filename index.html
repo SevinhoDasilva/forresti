@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sevinho — Creative Developer</title>
+<title>Sevinho — Refined Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
 
@@ -20,76 +20,113 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 body{background:var(--bg);color:var(--text);overflow-x:hidden}
 
-/* HERO CINEMATIC */
-.hero{
- height:200vh;
- position:relative;
+/* CONTAINER SYSTEM */
+.container{
+ max-width:1200px;
+ margin:auto;
+ padding:0 20px;
 }
 
+/* HERO */
+.hero{
+ height:180vh;
+ position:relative;
+}
 .hero-inner{
- position:sticky;top:0;
+ position:sticky;
+ top:0;
  height:100vh;
- display:flex;flex-direction:column;
+ display:flex;
+ flex-direction:column;
  justify-content:center;
  align-items:center;
  text-align:center;
 }
-
 .hero h1{
- font-size:80px;
+ font-size:72px;
  line-height:1.1;
  font-weight:800;
 }
+.hero span{color:var(--accent)}
 
-.hero span{
- color:var(--accent);
-}
-
-/* PARALLAX BG */
 .bg-layer{
- position:absolute;width:100%;height:100%;
- background:radial-gradient(circle,#7c3aed33,#000);
+ position:absolute;
+ width:100%;
+ height:100%;
+ background:radial-gradient(circle,#7c3aed22,#000);
  z-index:-1;
 }
 
-/* SECTION SPLIT */
+/* SECTION SPACING */
+section{
+ padding:120px 0;
+}
+
+/* SPLIT */
 .split{
  display:grid;
  grid-template-columns:1fr 1fr;
- gap:50px;
+ gap:60px;
  align-items:center;
- padding:150px 10%;
 }
-
 .split img{
  width:100%;
+ aspect-ratio:4/5;
+ object-fit:cover;
  border-radius:20px;
 }
 
-/* BIG TEXT */
+/* TEXT */
 .big-text{
- font-size:60px;
+ font-size:56px;
  font-weight:800;
+ margin-bottom:20px;
 }
 
-/* PROJECT GRID */
+/* MARQUEE */
+.marquee{
+ overflow:hidden;
+ white-space:nowrap;
+ border-top:1px solid #333;
+ border-bottom:1px solid #333;
+}
+.marquee span{
+ display:inline-block;
+ padding:20px 0;
+ font-size:32px;
+ animation:marquee 18s linear infinite;
+}
+@keyframes marquee{
+ 0%{transform:translateX(0)}
+ 100%{transform:translateX(-100%)}
+}
+
+/* PROJECT GRID FIX */
 .projects{
- padding:150px 10%;
  display:grid;
- grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
- gap:40px;
+ grid-template-columns:repeat(12,1fr);
+ gap:30px;
 }
 
 .project{
  position:relative;
- overflow:hidden;
  border-radius:20px;
+ overflow:hidden;
 }
+
+/* GRID VARIATION */
+.project.large{grid-column:span 6}
+.project.medium{grid-column:span 4}
+.project.small{grid-column:span 3}
 
 .project img{
  width:100%;
+ height:100%;
+ aspect-ratio:4/3;
+ object-fit:cover;
  transition:0.5s;
 }
+
 .project:hover img{
  transform:scale(1.1);
  filter:brightness(0.6);
@@ -97,29 +134,26 @@ body{background:var(--bg);color:var(--text);overflow-x:hidden}
 
 .project h3{
  position:absolute;
- bottom:20px;left:20px;
+ bottom:20px;
+ left:20px;
+ font-size:20px;
 }
 
 /* FOOTER */
 footer{
- padding:80px;text-align:center;
+ padding:60px;
+ text-align:center;
  font-size:14px;
+ opacity:0.7;
 }
 
-/* MARQUEE */
-.marquee{
- white-space:nowrap;
- overflow:hidden;
- font-size:40px;
- padding:50px 0;
-}
-.marquee span{
- display:inline-block;
- animation:marquee 15s linear infinite;
-}
-@keyframes marquee{
- 0%{transform:translateX(0)}
- 100%{transform:translateX(-100%)}
+/* RESPONSIVE */
+@media(max-width:900px){
+ .split{grid-template-columns:1fr}
+ .project.large,
+ .project.medium,
+ .project.small{grid-column:span 12}
+ .hero h1{font-size:42px}
 }
 </style>
 </head>
@@ -129,20 +163,21 @@ footer{
 <!-- HERO -->
 <section class="hero">
 <div class="bg-layer"></div>
-
-<div class="hero-inner">
+<div class="hero-inner container">
 <h1>Saya <span>Sevinho</span><br>Creative Developer</h1>
-<p>Menciptakan pengalaman web yang imersif & berkelas</p>
+<p>Menciptakan pengalaman web modern & elegan</p>
 </div>
 </section>
 
-<!-- ABOUT SPLIT -->
-<section class="split">
+<!-- ABOUT -->
+<section>
+<div class="container split">
 <div>
 <h2 class="big-text">Design meets Experience</h2>
-<p>Saya membangun website bukan hanya untuk dilihat, tapi untuk dirasakan.</p>
+<p>Saya membangun website dengan fokus pada detail, interaksi, dan visual yang terasa premium.</p>
 </div>
 <img src="foto1.jpeg">
+</div>
 </section>
 
 <!-- MARQUEE -->
@@ -150,26 +185,47 @@ footer{
 <span>HTML — CSS — JavaScript — React — UI/UX — Animation — Creative Coding —</span>
 </div>
 
-<!-- PROJECT -->
-<section class="projects">
-<div class="project">
+<!-- PROJECTS -->
+<section>
+<div class="container">
+<div class="projects">
+
+<div class="project large">
 <img src="foto2.jpeg">
-<h3>Modern Landing Page</h3>
+<h3>Landing Page Premium</h3>
 </div>
 
-<div class="project">
+<div class="project medium">
 <img src="foto3.jpeg">
-<h3>E-Commerce Experience</h3>
+<h3>E-Commerce</h3>
 </div>
 
-<div class="project">
+<div class="project medium">
 <img src="foto1.jpeg">
-<h3>Interactive UI</h3>
+<h3>UI Interaction</h3>
+</div>
+
+<div class="project small">
+<img src="foto2.jpeg">
+<h3>Mini Project</h3>
+</div>
+
+<div class="project small">
+<img src="foto3.jpeg">
+<h3>Design Concept</h3>
+</div>
+
+<div class="project small">
+<img src="foto1.jpeg">
+<h3>Creative UI</h3>
+</div>
+
+</div>
 </div>
 </section>
 
 <footer>
-<p>© 2026 Sevinho — Crafted with passion</p>
+<p>© 2026 Sevinho — Refined Experience</p>
 </footer>
 
 <script>
@@ -177,7 +233,7 @@ footer{
 // GSAP
 gsap.registerPlugin(ScrollTrigger);
 
-// HERO SCROLL EFFECT
+// HERO SCROLL
 gsap.to(".hero h1",{
  scrollTrigger:{
   trigger:".hero",
@@ -185,21 +241,21 @@ gsap.to(".hero h1",{
   end:"bottom top",
   scrub:true
  },
- y:200,
+ y:150,
  opacity:0
 });
 
 // SPLIT ANIMATION
 gsap.from(".split div",{
  scrollTrigger:".split",
- x:-100,
+ x:-80,
  opacity:0,
  duration:1
 });
 
 gsap.from(".split img",{
  scrollTrigger:".split",
- x:100,
+ x:80,
  opacity:0,
  duration:1
 });
@@ -207,9 +263,9 @@ gsap.from(".split img",{
 // PROJECT ANIM
 gsap.from(".project",{
  scrollTrigger:".projects",
- y:100,
+ y:80,
  opacity:0,
- stagger:0.2
+ stagger:0.15
 });
 
 </script>
