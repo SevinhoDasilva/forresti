@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Portfolio </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sevinho Premium Portfolio</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
@@ -11,154 +11,242 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#0f172a;color:#e2e8f0}
-html{scroll-behavior:smooth}
+:root{
+ --bg:#0b1120;
+ --text:#e2e8f0;
+ --card:rgba(255,255,255,0.05);
+ --primary:#38bdf8;
+}
 
+.light{
+ --bg:#f8fafc;
+ --text:#0b1120;
+ --card:#ffffff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* LOADER */
+#loader{
+ position:fixed;width:100%;height:100vh;
+ background:#000;display:flex;
+ justify-content:center;align-items:center;
+ z-index:9999;color:#fff;font-size:24px;
+}
+
+/* CURSOR */
+.cursor{
+ width:20px;height:20px;border:2px solid var(--primary);
+ border-radius:50%;position:fixed;
+ pointer-events:none;z-index:999;
+ transform:translate(-50%,-50%);
+}
+
+/* NAV */
 header{
  position:fixed;width:100%;top:0;
- display:flex;justify-content:space-between;align-items:center;
- padding:20px 10%;background:rgba(15,23,42,0.9);
- backdrop-filter:blur(10px);z-index:1000
+ display:flex;justify-content:space-between;
+ padding:20px 10%;z-index:1000;
+ backdrop-filter:blur(12px);
 }
 
 nav a{
- margin-left:20px;text-decoration:none;color:#e2e8f0;
- transition:0.3s
+ margin-left:20px;text-decoration:none;
+ color:var(--text);
+ position:relative;
 }
-nav a:hover{color:#38bdf8}
+nav a.active::after{
+ content:"";position:absolute;
+ bottom:-5px;left:0;width:100%;height:2px;
+ background:var(--primary);
+}
 
-section{padding:100px 10%}
-
+/* HERO */
 .hero{
- min-height:100vh;display:flex;flex-direction:column;
- justify-content:center;text-align:center
+ height:100vh;
+ display:flex;flex-direction:column;
+ justify-content:center;align-items:center;
+ text-align:center;
+ background:radial-gradient(circle at 50% 50%,#1e293b,#020617);
 }
-.hero h1{font-size:48px}
-.hero span{color:#38bdf8}
 
+.hero h1{
+ font-size:60px;
+ background:linear-gradient(90deg,#38bdf8,#818cf8);
+ -webkit-background-clip:text;
+ color:transparent;
+}
+
+/* BUTTON */
 .btn{
- margin-top:20px;padding:12px 25px;
- background:#38bdf8;border:none;border-radius:10px;
- cursor:pointer;color:#0f172a
+ margin-top:20px;
+ padding:14px 30px;
+ border-radius:50px;
+ border:none;
+ background:var(--primary);
+ cursor:pointer;
+ transition:0.3s;
 }
+.btn:hover{transform:scale(1.1)}
 
-/* ABOUT */
-.about{max-width:800px;margin:auto;text-align:center}
+/* SECTION */
+section{padding:120px 10%}
 
-/* SKILLS */
-.skills{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px
+/* GLASS CARD */
+.card{
+ background:var(--card);
+ backdrop-filter:blur(10px);
+ padding:20px;border-radius:20px;
+ transition:0.3s;
 }
-.skill{
- background:#1e293b;padding:15px;border-radius:10px;text-align:center
+.card:hover{
+ transform:translateY(-10px);
+ box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 
 /* PROJECT */
 .projects{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+ gap:20px;
 }
-.card{
- background:#1e293b;padding:20px;border-radius:15px;transition:0.3s
+
+.project{
+ position:relative;overflow:hidden;
 }
-.card:hover{transform:translateY(-8px)}
-
-/* GALLERY */
-.gallery{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:15px
+.project img{
+ width:100%;border-radius:20px;
 }
-.gallery img{width:100%;border-radius:10px}
+.project .overlay{
+ position:absolute;top:0;left:0;
+ width:100%;height:100%;
+ background:rgba(0,0,0,0.7);
+ display:flex;justify-content:center;align-items:center;
+ opacity:0;transition:0.3s;
+}
+.project:hover .overlay{opacity:1}
 
-/* CONTACT */
-.contact{text-align:center}
+/* FOOTER */
+footer{text-align:center;padding:30px}
 
-footer{text-align:center;padding:20px;background:#020617}
-
-@media(max-width:768px){
- .hero h1{font-size:32px}
+/* TOP BTN */
+#topBtn{
+ position:fixed;bottom:20px;right:20px;
+ padding:12px;border-radius:50%;
+ background:var(--primary);
+ cursor:pointer;display:none;
 }
 </style>
 </head>
 <body>
 
+<div id="loader">Loading...</div>
+<div class="cursor" id="cursor"></div>
+
 <header>
-<h2>Portfolio</h2>
+<h2>Sevinho</h2>
 <nav>
 <a href="#home">Home</a>
 <a href="#about">About</a>
-<a href="#skills">Skills</a>
 <a href="#projects">Projects</a>
-<a href="#gallery">Gallery</a>
-<a href="#contact">Contact</a>
 </nav>
+<button onclick="toggleTheme()">🌙</button>
 </header>
 
 <section class="hero" id="home">
-<h1>Saya <span>Sevinho Dasilva</span></h1>
-<p>Web Portofolio Developer yang fokus pada UI/UX yang fokus pada design modern dan performa tinggi</p>
-<button class="btn" onclick="scrollToSection('projects')">Lihat Project</button>
+<h1 id="typing"></h1>
+<p>Creative Developer & UI Designer</p>
+<button class="btn" onclick="scrollToSection('projects')">Explore Work</button>
 </section>
 
 <section id="about">
-<h2>About Me</h2>
-<div class="about">
-<p>Saya adalah seorang web developer yang memiliki passion dalam membangun website modern, responsif, dan user-friendly. Saya berpengalaman menggunakan HTML, CSS, JavaScript, dan framework modern. Saya juga adalah mahasiswa Teknik Informatika angkatan 24 di Institut Teknologi Garut </p>
-</div>
-</section>
-
-<section id="skills">
-<h2>Skills</h2>
-<div class="skills">
-<div class="skill">HTML</div>
-<div class="skill">CSS</div>
-<div class="skill">JavaScript</div>
-<div class="skill">React</div>
-<div class="skill">UI/UX</div>
+<h2>About</h2>
+<div class="card">
+<p>Saya fokus membuat website modern dengan performa tinggi dan desain premium.</p>
 </div>
 </section>
 
 <section id="projects">
 <h2>Projects</h2>
 <div class="projects">
-<div class="card">Website Company Profile</div>
-<div class="card">E-Commerce</div>
-<div class="card">Landing Page</div>
-</div>
-</section>
 
- 
-<section id="gallery">
-<h2>Gallery</h2>
-<div class="gallery">
+<div class="project card">
 <img src="foto1.jpeg">
-<img src="foto2.jpeg">
-<img src="foto3.jpeg">
+<div class="overlay">View Project</div>
 </div>
-</section>
 
-<section id="contact">
-<h2>Contact</h2>
-<div class="contact">
-<p>Email: vinvin140107@gmail.com</p>
-<p>Instagram: @vinn.dasilva_</p>
+<div class="project card">
+<img src="foto2.jpeg">
+<div class="overlay">View Project</div>
+</div>
+
+<div class="project card">
+<img src="foto3.jpeg">
+<div class="overlay">View Project</div>
+</div>
+
 </div>
 </section>
 
 <footer>
-<p>© 2026 Portfolio Sevinho </p>
+<p>© 2026 Sevinho Premium</p>
 </footer>
 
+<div id="topBtn" onclick="scrollToTop()">↑</div>
+
 <script>
+
+// LOADER
+window.onload=()=>{
+ document.getElementById("loader").style.display="none";
+}
+
+// SCROLL
 function scrollToSection(id){
  document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
-// GSAP Animasi
+// TYPING
+const text="Sevinho Dasilva";
+let i=0;
+function typing(){
+ if(i<text.length){
+  document.getElementById("typing").innerHTML+=text.charAt(i);
+  i++;
+  setTimeout(typing,80);
+ }
+}
+typing();
+
+// CURSOR
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",e=>{
+ cursor.style.top=e.clientY+"px";
+ cursor.style.left=e.clientX+"px";
+});
+
+// THEME
+function toggleTheme(){
+ document.body.classList.toggle("light");
+}
+
+// BACK TO TOP
+window.onscroll=()=>{
+ document.getElementById("topBtn").style.display=
+ window.scrollY>300?"block":"none";
+}
+
+function scrollToTop(){
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// GSAP
 gsap.registerPlugin(ScrollTrigger);
 
-gsap.from('.hero h1',{y:50,opacity:0,duration:1});
-gsap.from('.skill',{scrollTrigger:'#skills',y:40,opacity:0,stagger:0.2});
-gsap.from('.card',{scrollTrigger:'#projects',y:40,opacity:0,stagger:0.2});
+gsap.from(".hero h1",{y:100,opacity:0,duration:1});
+gsap.from(".card",{scrollTrigger:".card",y:60,opacity:0,stagger:0.2});
+
 </script>
 
 </body>
